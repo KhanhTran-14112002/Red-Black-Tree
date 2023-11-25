@@ -33,9 +33,13 @@ public class Main {
         List<Integer> greaterThan5 = redBlackTree.getGreaterThan(5, redBlackTree.size());
         System.out.println("Elements greater than 5: " + greaterThan5);
 
+        
         System.out.println("Enter  element to search");
         Integer check = scanner.nextInt();
         RedBlackNode<Integer, String> find = redBlackTree.searchByKey(check);
         System.out.println(find);
+
+
+
     }
 }

@@ -39,6 +39,8 @@ public class Main {
         RedBlackNode<Integer, String> find = redBlackTree.searchByKey(check);
         System.out.println(find);
 
+        redBlackTree.printTree();
+
 
 
     }

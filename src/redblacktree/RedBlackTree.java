@@ -941,6 +941,7 @@ public class RedBlackTree<T extends Comparable<T>, V> implements RedBlackTreeInt
 
         Stack<RedBlackNode<T, V>> stack = new Stack<>();
         RedBlackNode<T, V> current = root;
+        int nodeCount = 0;
 
         while (current != nil || !stack.isEmpty()) {
             while (current != nil) {
@@ -950,11 +951,12 @@ public class RedBlackTree<T extends Comparable<T>, V> implements RedBlackTreeInt
 
             current = stack.pop();
             System.out.print(current.key + "(" + (current.color == RedBlackNode.RED ? "R" : "B") + ") ");
+            nodeCount++;
 
             current = current.right;
         }
 
-        System.out.println();
+        System.out.println("\nNumber of nodes: " + nodeCount);
     }
 
 

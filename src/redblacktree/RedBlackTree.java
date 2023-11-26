@@ -884,40 +884,7 @@ public class RedBlackTree<T extends Comparable<T>, V> implements RedBlackTreeInt
         return root.numLeft + root.numRight + 1;
     }// end size()
 
-    /**
-     * In cây đỏ-đen ra màn hình dưới dạng cây nhị phân, bắt đầu từ nút được chỉ định.
-     *
-     * @param node  Nút hiện tại của cây.
-     * @param depth Độ sâu của nút hiện tại trong cây.
-     *              <p>
-     *              Phương thức này in cây đỏ-đen ra màn hình theo cấu trúc cây nhị phân, bắt đầu từ nút
-     *              được chỉ định. Trong quá trình in, mỗi nút được hiển thị với khoảng cách tương ứng với
-     *              độ sâu của nó trong cây.
-     * @see <a href="https://en.wikipedia.org/wiki/Binary_tree#Definition">Binary Tree on Wikipedia</a>
-     */
-    public void printTree(RedBlackNode<T, V> node, int depth) {
-        if (node == null) {
-            return;
-        }
 
-        // In cây theo thứ tự: cây con phải - nút - cây con trái
-        if (node.right != null) {
-            printTree(node.right, depth + 1);
-        }
-
-        // In khoảng cách tương ứng với độ sâu của nút
-        for (int i = 0; i < depth; i++) {
-            System.out.print("    ");
-        }
-
-        // In giá trị của nút
-        System.out.println(node.key);
-
-        // In cây con trái
-        if (node.left != null) {
-            printTree(node.left, depth + 1);
-        }
-    }
 
     public RedBlackNode<T, V> searchByKey(T key) {
         // Tree is empty
@@ -966,6 +933,32 @@ public class RedBlackTree<T extends Comparable<T>, V> implements RedBlackTreeInt
         }
         return count;
     }
+    public void printTree() {
+        if (root == nil) {
+            System.out.println("Tree is empty.");
+            return;
+        }
+
+        Stack<RedBlackNode<T, V>> stack = new Stack<>();
+        RedBlackNode<T, V> current = root;
+
+        while (current != nil || !stack.isEmpty()) {
+            while (current != nil) {
+                stack.push(current);
+                current = current.left;
+            }
+
+            current = stack.pop();
+            System.out.print(current.key + "(" + (current.color == RedBlackNode.RED ? "R" : "B") + ") ");
+
+            current = current.right;
+        }
+
+        System.out.println();
+    }
+
+
+
 //    public int getHeight() {
 //        if (root == null) {
 //            return 0;

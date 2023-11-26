@@ -56,7 +56,7 @@ public class EnglishDictionary {
                         dictionary.insert(key,word);
 //                        System.out.println("Tree Height = " + dictionary.getHeight());
                         System.out.println("Dictionary Size = " + dictionary.size());
-//                        dictionary.PrintTree();
+                        dictionary.printTree();
                     } else {
                         System.out.println("ERROR: Word already in the dictionary! ");
                     }
@@ -75,7 +75,7 @@ public class EnglishDictionary {
                         dictionary.remove(key);
 //                        System.out.println("Tree Height = " + dictionary.height(dictionary.getRoot()));
                         System.out.println("Dictionary Size = " + dictionary.size());
-//                        dictionary.PrintTree();
+//                        dictionary.printTree();
                     } else {
                         System.out.println("ERROR: Not Found! ");
                     }

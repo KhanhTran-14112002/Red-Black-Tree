@@ -54,6 +54,10 @@ class RedBlackNode<T extends Comparable<T>, V> {
         }
     }
 
+    public void setColor(int color_input) {
+        this.color = color_input;
+    }
+
 
     // Constructor with key
     RedBlackNode(T key, V data) {

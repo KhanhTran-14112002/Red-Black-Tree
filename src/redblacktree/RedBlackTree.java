@@ -865,7 +865,7 @@ public class RedBlackTree<T extends Comparable<T>, V> implements RedBlackTreeInt
 
     // @param: node, the RedBlackNode we must check to see whether it's nil
     // @return: return's true of node is nil and false otherwise
-    private boolean isNil(RedBlackNode node) {
+    boolean isNil(RedBlackNode node) {
 
         // return appropriate value
         return node == nil;

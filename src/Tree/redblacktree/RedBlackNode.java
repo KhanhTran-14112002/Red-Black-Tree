@@ -1,4 +1,4 @@
-package redblacktree;
+package Tree.redblacktree;
 
 /**
  * Định nghĩa một nút trong cây đỏ-đen.

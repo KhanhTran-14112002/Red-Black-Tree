@@ -1,8 +1,7 @@
-package redblacktree;
+package Tree.redblacktree;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
-import java.util.List;
 
 public class RedBlackTreeVisualization<T extends Comparable<T>, V> extends JFrame {
 
@@ -15,8 +14,8 @@ public class RedBlackTreeVisualization<T extends Comparable<T>, V> extends JFram
 
         this.tree = tree;
 
-        TreeDrawer<T, V> treeDrawer = new TreeDrawer<>(tree);
-        add(treeDrawer);
+//        TreeDrawer<T, V> treeDrawer = new TreeDrawer<>(tree);
+//        add(treeDrawer);
 
         setVisible(true);
     }
@@ -36,17 +35,17 @@ public class RedBlackTreeVisualization<T extends Comparable<T>, V> extends JFram
 
         SwingUtilities.invokeLater(() -> new RedBlackTreeVisualization<>(tree));
 
-        System.out.println("Size of the tree: " + tree.size());
-
-        // In danh sách các phần tử nhỏ hơn 12
-        System.out.println("Elements smaller than 12: " + tree.numSmaller(12));
-
-        // In danh sách các phần tử lớn hơn 7
-        System.out.println("Elements greater than 7: " + tree.numGreater(7));
-
-        // In danh sách các phần tử lớn hơn 5 (sử dụng hàm getGreaterThan)
-        List<Integer> greaterThan5 = tree.getGreaterThan(5, tree.size());
-        System.out.println("Elements greater than 5: " + greaterThan5);
+//        System.out.println("Size of the tree: " + tree.size());
+//
+//        // In danh sách các phần tử nhỏ hơn 12
+//        System.out.println("Elements smaller than 12: " + tree.numSmaller(12));
+//
+//        // In danh sách các phần tử lớn hơn 7
+//        System.out.println("Elements greater than 7: " + tree.numGreater(7));
+//
+//        // In danh sách các phần tử lớn hơn 5 (sử dụng hàm getGreaterThan)
+//        List<Integer> greaterThan5 = tree.getGreaterThan(5, tree.size());
+//        System.out.println("Elements greater than 5: " + greaterThan5);
 
 //        3(B) 5(R) 7(B) 8(R) 10(B) 11(R) 14(B) 15(R) 17(B) 948(R)
 

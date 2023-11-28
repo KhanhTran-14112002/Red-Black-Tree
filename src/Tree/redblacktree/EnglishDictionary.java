@@ -1,4 +1,4 @@
-package redblacktree;
+package Tree.redblacktree;
 
 
 import java.io.BufferedReader;

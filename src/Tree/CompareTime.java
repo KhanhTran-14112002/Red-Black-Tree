@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Test {
+public class CompareTime {
     private static final String COMMA_DELIMITER = ",";
     private static final BinaryTreeInterface<Integer, String> binarySearchTree = new BinarySearchTree<>();
     private static final RedBlackTree<Integer, String> redBlackTree = new RedBlackTree<>();

@@ -41,7 +41,7 @@ public class DictionaryGUI extends JFrame {
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String inputWord = textField.getText().trim();
+                String inputWord = textField.getText().trim().toLowerCase();
                 WordInfo wordInfo = dictionary.search(inputWord).getData();
                 if (wordInfo != null) {
                     resultArea.setText("Từ: \"" + inputWord + "\"\nLoại từ: " + wordInfo.getType() + "\nNghĩa: " + wordInfo.getDefinition());

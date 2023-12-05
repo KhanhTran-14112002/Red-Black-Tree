@@ -1,3 +1,159 @@
 hello,noun,xin chao
 hi,noun,chao
 bye,noun,tam biet
+apple,noun,qua tao
+car,noun,xe hoi
+book,noun,sach
+computer,noun,may tinh
+run,verb,chay
+swim,verb,boi
+sing,verb,hat
+happy,adjective,hanh phuc
+big,adjective,lon
+small,adjective,nho
+table,noun,ban
+chair,noun,ghế
+student,noun,sinh viên
+teacher,noun,gia su
+learn,verb,học
+write,verb,viet
+read,verb,đọc
+green,adjective,xanh
+blue,adjective,xanh dương
+red,adjective,đỏ
+yellow,adjective,vàng
+city,noun,thanh pho
+country,noun,đất nước
+ocean,noun,đại dương
+mountain,noun,núi
+sun,noun,mặt trời
+moon,noun,mat trang
+water,noun,nước
+fire,noun,lửa
+earth,noun,đất
+wind,noun,gio
+flower,noun,hoa
+family,noun,gia đình
+friend,noun,bạn bè
+love,noun,tình yêu
+eat,verb,ăn
+drink,verb,uống
+sleep,verb,ngủ
+happy,adjective,hạnh phúc
+sad,adjective,buồn
+angry,adjective,tức giận
+hot,adjective,nong
+cold,adjective,lạnh
+beautiful,adjective,đẹp
+ugly,adjective,xấu
+fast,adjective,nhanh
+slow,adjective,chậm
+old,adjective,già
+young,adjective,trẻ
+good,adjective,tốt
+bad,adjective,xấu
+new,adjective,mới
+old,adjective,cũ
+hard,adjective,khó
+easy,adjective,dễ
+big,adjective,lớn
+small,adjective,nhỏ
+happy,adjective,hạnh phúc
+sad,adjective,buồn
+angry,adjective,tức giận
+hot,adjective,nóng
+cold,adjective,lạnh
+beautiful,adjective,đẹp
+ugly,adjective,xấu
+fast,adjective,nhanh
+slow,adjective,chậm
+old,adjective,già
+young,adjective,trẻ
+good,adjective,tốt
+bad,adjective,xấu
+new,adjective,mới
+old,adjective,cũ
+hard,adjective,khó
+easy,adjective,dễ
+cat,noun,mèo
+dog,noun,chó
+bird,noun,chim
+fish,noun,cá
+tree,noun,cây
+flower,noun,hoa
+house,noun,nhà
+school,noun,trường học
+book,noun,sách
+pen,noun,bút
+paper,noun,giấy
+desk,noun,bàn
+chair,noun,ghế
+bed,noun,giường
+blanket,noun,chăn
+pillow,noun,gối
+towel,noun,khăn tắm
+soap,noun,xà phòng
+shampoo,noun,dầu gội đầu
+toothbrush,noun,bàn chải đánh răng
+toothpaste,noun,kem đánh răng
+comb,noun,lược
+brush,noun,bàn chải
+mirror,noun,gương
+jump,verb,nhảy
+run,verb,chạy
+walk,verb,đi bộ
+swim,verb,bơi
+play,verb,chơi
+eat,verb,ăn
+drink,verb,uống
+sleep,verb,ngủ
+talk,verb,nói
+sing,verb,hát
+dance,verb,nhảy
+watch,verb,xem
+listen,verb,nghe
+read,verb,đọc
+write,verb,viết
+draw,verb,vẽ
+paint,verb,sơn
+cook,verb,nấu ăn
+clean,verb,lao dọn
+help,verb,giúp đỡ
+big,adjective,lớn
+small,adjective,nhỏ
+tall,adjective,cao
+short,adjective,thấp
+fat,adjective,mập
+thin,adjective,gầy
+strong,adjective,mạnh mẽ
+weak,adjective,yếu đuối
+smart,adjective,thông minh
+dumb,adjective,ngu ngốc
+happy,adjective,vui vẻ
+sad,adjective,buồn bã
+angry,adjective,tức giận
+surprised,adjective,bất ngờ
+scared,adjective,sợ hãi
+tired,adjective,mệt mỏi
+hungry,adjective,đói
+thirsty,adjective,khát
+hot,adjective,nóng
+cold,adjective,lạnh
+wet,adjective,ướt
+dry,adjective,khô
+lIght,adjective,nhẹ
+heavy,adjective,nặng
+very,adverb,rất
+much,adverb,nhiều
+too much,adverb,quá nhiều
+not enough,adverb,không đủ
+more,adverb,thêm
+less,adverb,ít hơn
+almost,adverb,gần như
+only,adverb,chỉ
+always,adverb,luôn luôn
+never,adverb,không bao giờ
+sometimes,adverb,có lúc
+often,adverb,thường xuyên
+rarely,adverb,rất hiếm khi
+usually,adverb,thường thường

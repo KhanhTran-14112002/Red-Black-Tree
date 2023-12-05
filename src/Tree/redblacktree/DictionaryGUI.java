@@ -64,7 +64,7 @@ public class DictionaryGUI extends JFrame {
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts.length >= 3) {
-                    String word = parts[0].trim();
+                    String word = parts[0].trim().toLowerCase();
                     String type = parts[1].trim();
                     String definition = parts[2].trim();
                     dictionary.insert(word, new WordInfo(type, definition));

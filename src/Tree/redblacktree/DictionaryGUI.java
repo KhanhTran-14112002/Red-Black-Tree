@@ -16,7 +16,7 @@ public class DictionaryGUI extends JFrame {
         // Tạo JFrame và cài đặt thuộc tính cơ bản
         super("English Dictionary");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 200);
+        setSize(500, 300);
         setLayout(new BorderLayout());
 
         // Tạo panel cho các thành phần của giao diện
@@ -37,6 +37,7 @@ public class DictionaryGUI extends JFrame {
         // Đọc dữ liệu từ file và xây dựng từ điển
         dictionary = new RedBlackTree<>();
         buildDictionary("src\\Tree\\redblacktree\\Data");
+        setLocationRelativeTo(null);
         // Xử lý sự kiện khi nhấn nút "Tra từ"
         searchButton.addActionListener(new ActionListener() {
             @Override

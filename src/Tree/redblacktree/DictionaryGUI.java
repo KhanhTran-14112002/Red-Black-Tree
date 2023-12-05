@@ -42,8 +42,10 @@ public class DictionaryGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String inputWord = textField.getText().trim().toLowerCase();
+                RedBlackNode<String, WordInfo> searchResult = dictionary.search(inputWord);
+                if (searchResult!=null && searchResult.getData()!=null) {
                 WordInfo wordInfo = dictionary.search(inputWord).getData();
-                if (wordInfo != null) {
+//                if (wordInfo != null) {
                     resultArea.setText("Từ: \"" + inputWord + "\"\nLoại từ: " + wordInfo.getType() + "\nNghĩa: " + wordInfo.getDefinition());
                 } else {
                     resultArea.setText("Không tìm thấy từ \"" + inputWord + "\" trong từ điển.");

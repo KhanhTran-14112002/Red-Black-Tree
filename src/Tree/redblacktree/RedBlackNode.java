@@ -111,10 +111,11 @@ class RedBlackNode<T extends Comparable<T>, V> {
             colorNode = "Black";
         }
 
-        return "RedBlackNode{" +
-                "key=" + key +
-                ", data=" + data +
-                ", color=" + colorNode +
-                '}';
+//        return "RedBlackNode{" +
+//                "key=" + key +
+//                ", data=" + data +
+//                ", color=" + colorNode +
+//                '}';
+        return "" + data;
     }
 }

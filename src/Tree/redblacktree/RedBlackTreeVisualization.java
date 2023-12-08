@@ -14,8 +14,8 @@ public class RedBlackTreeVisualization<T extends Comparable<T>, V> extends JFram
 
         this.tree = tree;
 
-//        TreeDrawer<T, V> treeDrawer = new TreeDrawer<>(tree);
-//        add(treeDrawer);
+        TreeDrawer<T, V> treeDrawer = new TreeDrawer<>(tree);
+        add(treeDrawer);
 
         setVisible(true);
     }

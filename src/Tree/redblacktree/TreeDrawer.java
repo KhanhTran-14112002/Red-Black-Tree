@@ -28,7 +28,7 @@ class TreeDrawer<T extends Comparable<T>, V> extends JPanel {
                 root.setColor(root.getColor() == RedBlackNode.BLACK ? RedBlackNode.BLACK : RedBlackNode.RED);
             } else {
                 root.setColor(RedBlackNode.BLACK);
-                g.setColor(Color.BLUE);
+                g.setColor(Color.BLACK);
             }
             g.fillOval(x - 15, y - 15, 30, 30);
             g.setColor(Color.WHITE);

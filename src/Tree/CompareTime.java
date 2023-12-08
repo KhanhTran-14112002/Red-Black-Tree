@@ -39,7 +39,7 @@ public class CompareTime {
 
 
     public static void init() {
-        String filePath = "H:\\Workspace\\Java\\DataStructureAndAlgorithms\\src\\BST\\output.csv";
+        String filePath = "src\\Tree\\output.csv";
         readListData(filePath);
     }
 

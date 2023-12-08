@@ -1,56 +1,4 @@
-package Tree.redblacktree;/*
-Design Decisions:
------------------
-
-I chose to use the sentinel instead of regular null pointers because it makes
-removeFixup() easier and more efficient.  Every RedBlackNode instantiated has
-all of its pointers pointed to nil.  The root at all times will have it s
-parent pointer to nil. The remove and delete algorithm s are based on the
-course textbook and so are the leftRotate(RedBlackNode x) and
-rightRotate(RedBlackNode y) functions.
-
-After an insertion of an element using insert(), we always call insertFixup()
-to ensure that red-black properties are maintained.  While when deleteing, we
-only call deleteFixup when a certain condition( x == BLACK) is true.
-
-Since we are only concerned with deleting the key from the tree, we will begin
-our delete(RedBlackNode v) function with a call to search(v.key) which will
-ensure us that we are deleting the correct node.
-
-I have implemented the numSmaller(int) and numGreater(int) functions by keeping
-track of how many elements are to the left (numLeft) and to the right (numRight)
-of each node.  They both contain the number of elements to the left or right of
-a given node, not including that node itself.
-
-This value is updated when a node is inserted and maintained by the functions
-leftRotateFixup(RedBlackNode) and rightRotateFixup(RedBlackNode) which update
-these variables when a rotation occurs. This value is also updated during the
-deletion of a node by the function called fixNodeData(RedBlackNode, int).
-
-My size() function checks the size of the roots numLeft and numRight variables,
-adds them and adds one to return the answer.  This operation is performed in
-O(1) time.
-
-In the program, I am checking for the case where a particular RedBlackNode has
-a pointer pointing to nil, since this operation is very common, I have a
-function called isNil(RedBlackNode), which returns a boolean value of whether
-the argument is nil or not.  I have chosen my search(int key) function to be
-iterative when it easily could have been recursive because the textbook
-mentions that an iterative search is always faster than a recursive one.
-
-Duplicate RedBlackNodes are thought of as being slightly greater than its
-counterpart with the same key.  The insert() function takes care of this
-by having to cases in it's while loop, one for < and one for =>.  The
-function fixNodeData() takes care of this during deletion as also having two
-cases.
-
-I have chosen to represent, RED as the integer value 1 and BLACK as the integer
-value 0. Both these are declared as final in this class' instance variables.
-These values are assigned to the 'color' variable.
-
-*/
-
-// Inclusions
+package Tree.redblacktree;
 
 import java.util.*;
 
@@ -274,45 +222,11 @@ public class RedBlackTree<T extends Comparable<T>, V> implements RedBlackTreeInt
 
     }// end insert(RedBlackNode z)
 
-
     // @param: z, the node which was inserted and may have caused a violation
     // of the RedBlackTree properties
     // Fixes up the violation of the RedBlackTree properties that may have
     // been caused during insert(z)
 
-    /**
-     * Phục hồi tính chất của cây đỏ-đen sau khi thực hiện phương thức insert.
-     *
-     * @param z Nút được thêm vào cây.
-     *          <p>
-     *          Phương thức này được sử dụng để duy trì tính chất của cây đỏ-đen sau khi một nút mới
-     *          được thêm vào cây. Trong quá trình này, chúng ta kiểm tra và điều chỉnh màu sắc của các
-     *          nút để đảm bảo tính chất của cây đỏ-đen.
-     *          <p>
-     *          y Nút cousin của z.
-     *          <p>
-     *          Trong quá trình phục hồi, chúng ta kiểm tra và xử lý các trường hợp có thể xảy ra khi
-     *          một nút mới (z) được thêm vào cây đỏ-đen. Các trường hợp cụ thể được mô tả dưới đây:
-     *          <p>
-     *          Case 1: Nếu nút cousin y của z có màu đỏ.
-     *          - Chuyển màu của parent của z và y thành đen.
-     *          - Chuyển màu của grandparent của z thành đỏ.
-     *          - Di chuyển lên mức grandparent để kiểm tra tính chất của cây đỏ-đen.
-     *          <p>
-     *          Case 2: Nếu nút cousin y của z có màu đen và z là con phải của parent của nó.
-     *          - Quay trái tại nút parent của z.
-     *          - Di chuyển z lên mức parent để kiểm tra tính chất của cây đỏ-đen.
-     *          <p>
-     *          Case 3: Nếu nút cousin y của z có màu đen và z là con trái của parent của nó.
-     *          - Chuyển màu của parent của z thành đen.
-     *          - Chuyển màu của grandparent của z thành đỏ.
-     *          - Quay phải tại grandparent của z.
-     *          - Kết thúc vòng lặp.
-     *          <p>
-     *          Kết thúc vòng lặp, chúng ta đảm bảo rằng tính chất của cây đỏ-đen vẫn được duy trì và
-     *          màu của nút gốc (root) được thiết lập thành đen để đảm bảo không xâm phạm tính chất của cây.
-     * @see <a href="https://en.wikipedia.org/wiki/Red%E2%80%93black_tree">Red–black tree on Wikipedia</a>
-     */
     private void insertFixup(RedBlackNode<T, V> z) {
 
         RedBlackNode<T, V> y = nil;
@@ -594,48 +508,6 @@ public class RedBlackTree<T extends Comparable<T>, V> implements RedBlackTreeInt
     // Restores the Red Black properties that may have been violated during
     // the removal of a node in remove(RedBlackNode v)
 
-    /**
-     * Phục hồi tính chất của cây đỏ-đen sau khi thực hiện phương thức remove.
-     *
-     * @param x Nút bắt đầu quá trình phục hồi.
-     *          <p>
-     *          Phương thức này được sử dụng để đảm bảo tính chất của cây đỏ-đen sau khi một nút được xóa
-     *          khỏi cây. Trong quá trình này, màu đỏ-đen và cân bằng của cây được duy trì để đảm bảo
-     *          các tính chất của cây đỏ-đen.
-     *          <p>
-     *          w  Nút sibling của x.
-     *          <p>
-     *          Trong quá trình phục hồi, chúng ta duyệt qua cây để đảm bảo rằng nó vẫn đáp ứng các điều kiện
-     *          của cây đỏ-đen. Quy trình này có thể liên quan đến các trường hợp khác nhau, như khi sibling
-     *          của nút x có màu đỏ hoặc các con của nó có màu đen. Các trường hợp cụ thể được mô tả dưới đây:
-     *          <p>
-     *          Case 1: Màu của sibling w là đỏ.
-     *          - Chuyển màu của w thành đen.
-     *          - Chuyển màu của parent của x thành đỏ.
-     *          - Quay trái tại parent của x.
-     *          - Cập nhật sibling w sau khi quay trái.
-     *          <p>
-     *          Case 2: Cả hai con của w đều có màu đen.
-     *          - Chuyển màu của w thành đỏ.
-     *          - Di chuyển lên mức trên trong cây để kiểm tra tính chất của cây đỏ-đen.
-     *          <p>
-     *          Case 3 / Case 4: Các trường hợp còn lại khi ít nhất một con của w có màu đỏ.
-     *          - Có thể xảy ra một trong các trường hợp sau:
-     *          + Case 3: Con phải của w có màu đen, con trái có màu đen.
-     *          - Chuyển màu của con trái của w thành đen.
-     *          - Chuyển màu của w thành đỏ.
-     *          - Quay phải tại w.
-     *          - Cập nhật sibling w sau khi quay phải.
-     *          + Case 4: Con trái của w có màu đỏ, con phải có màu đen hoặc màu nào cũng được.
-     *          - Chuyển màu của w thành màu của parent x.
-     *          - Chuyển màu của parent x thành đen.
-     *          - Chuyển màu của con phải của w thành đen (nếu có).
-     *          - Quay trái tại parent của x.
-     *          - Thiết lập x bằng root để kết thúc vòng lặp.
-     *          <p>
-     *          Kết thúc vòng lặp, chúng ta đảm bảo rằng tính chất của cây đỏ-đen vẫn được duy trì và
-     *          màu của nút x được thiết lập thành đen để đảm bảo không xâm phạm tính chất của cây.
-     */
     private void removeFixup(RedBlackNode<T, V> x) {
 
         RedBlackNode<T, V> w;
@@ -732,12 +604,6 @@ public class RedBlackTree<T extends Comparable<T>, V> implements RedBlackTreeInt
     // Searches for a node with key k and returns the first such node, if no
     // such node is found returns null
 
-    /**
-     * Tìm kiếm một nút trong cây dựa trên giá trị khóa.
-     *
-     * @param key Giá trị khóa cần tìm kiếm.
-     * @return Nút chứa giá trị khóa nếu tồn tại, hoặc null nếu không tìm thấy.
-     */
     @Override
     public RedBlackNode<T, V> search(T key) {
         // Khởi tạo một con trỏ trỏ đến gốc để duyệt cây
@@ -827,14 +693,7 @@ public class RedBlackTree<T extends Comparable<T>, V> implements RedBlackTreeInt
 
     }// end findNumGreater(RedBlackNode, int key)
 
-    /**
-     * Returns sorted list of keys greater than key.  Size of list
-     * will not exceed maxReturned
-     *
-     * @param key         Key to search for
-     * @param maxReturned Maximum number of results to return
-     * @return List of keys greater than key.  List may not exceed maxReturned
-     */
+
     @Override
     public List<T> getGreaterThan(T key, Integer maxReturned) {
         List<T> list = new ArrayList<T>();
@@ -995,34 +854,3 @@ public class RedBlackTree<T extends Comparable<T>, V> implements RedBlackTreeInt
 
 
 }// end class RedBlackTree
-
-
-/*
-Design Decisions:
------------------
-
-Tôi đã chọn lớp đối tượng RedBlackNode để có bảy biến thể hiện
-tất cả được khai báo công khai theo thông số kỹ thuật chuyển nhượng. Mỗi trường hợp của một
-RedBlackNode giữ một "khóa" có thể so sánh được, là khóa của RedBlackNode. Nó
-cũng chứa một số nguyên "màu" khác được gán "0" cho ĐEN và "1" cho
-MÀU ĐỎ. Biến số nguyên "numSmaller" chứa các phần tử ở bên trái của một
-nút đã cho và "numGreater" chứa các phần tử ở bên phải của một nút nhất định, không phải
-bao gồm chính nút đó.
-
-Mỗi phiên bản cũng giữ một con trỏ RedBlackNode tới nút "cha", "trái" của nút
-đứa trẻ và đứa trẻ "đúng". Các giá trị này được gán cho nil khi một nút được
-được khởi tạo.
-
-Hàm tạo nhận đối số có thể so sánh sẽ gán giá trị đó cho khóa
-của nút. Hàm tạo trống ở đó để kiểm tra trường hợp thử nghiệm của Giáo sư Pitt và
-Ngoài ra, trong trường hợp chúng tôi chỉ muốn tạo RedBlackNode và khởi tạo khóa của nó sau.
-
-Tôi đã chọn sử dụng công cụ canh gác vì nó dễ dàng hơn và hiệu quả hơn.
-cách hiệu quả để triển khai Cây Đỏ Đen. Trọng điểm (nil) được tuyên bố
-trong lớp RedBlackTree vì nó được tham chiếu nhiều nhất ở đó, trong lớp này
-chúng ta khởi tạo các con trỏ trái/phải/cha với tham chiếu tĩnh về 0.
-
-*/
-
-// inclusions
-

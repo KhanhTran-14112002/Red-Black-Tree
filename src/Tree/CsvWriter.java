@@ -8,7 +8,7 @@ import java.util.Random;
 public class CsvWriter {
     public static void main(String[] args) {
 //        String fileName = "H:\\Workspace\\Java\\DataStructureAndAlgorithms\\src\\BST\\output.csv";
-        String fileName = "src\\BST\\output.csv";
+        String fileName = "src\\Tree\\output.csv";
         int numberOfLines = 12000; // specify the number of lines in the CSV file
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {

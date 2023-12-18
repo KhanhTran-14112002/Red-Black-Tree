@@ -22,32 +22,33 @@ public class RedBlackTreeVisualization<T extends Comparable<T>, V> extends JFram
 
     public static void main(String[] args) {
         RedBlackTree<Integer, String> tree = new RedBlackTree<>();
-        tree.insert(10, "Data10");
-        tree.insert(5, "Data5");
-        tree.insert(15, "Data15");
-        tree.insert(3, "Data3");
-        tree.insert(7, "Data7");
-        tree.insert(8, "Data0");
-        tree.insert(17, "Data47");
-        tree.insert(14, "Data37");
-        tree.insert(11, "Data37");
-        tree.insert(948, "Data37");
+        tree.insert(50, "Data10");
+        tree.insert(75, "Data5");
+        tree.insert(25, "Data15");
+        tree.insert(80, "Data3");
+        tree.insert(100, "Data7");
+        tree.insert(110, "Data0");
+        tree.insert(115, "Data47");
+        tree.insert(120, "Data37");
 
         SwingUtilities.invokeLater(() -> new RedBlackTreeVisualization<>(tree));
 
-//        System.out.println("Size of the tree: " + tree.size());
-//
-//        // In danh sách các phần tử nhỏ hơn 12
-//        System.out.println("Elements smaller than 12: " + tree.numSmaller(12));
-//
-//        // In danh sách các phần tử lớn hơn 7
-//        System.out.println("Elements greater than 7: " + tree.numGreater(7));
-//
-//        // In danh sách các phần tử lớn hơn 5 (sử dụng hàm getGreaterThan)
-//        List<Integer> greaterThan5 = tree.getGreaterThan(5, tree.size());
-//        System.out.println("Elements greater than 5: " + greaterThan5);
-
-//        3(B) 5(R) 7(B) 8(R) 10(B) 11(R) 14(B) 15(R) 17(B) 948(R)
+//        RedBlackTree<Integer, String> tree = new RedBlackTree<>();
+////
+////        Scanner scanner = new Scanner(System.in);
+////
+////        System.out.print("Enter the size of the tree (n): ");
+////        int n = scanner.nextInt();
+////
+////        Random random = new Random();
+////
+////        System.out.println("Inserting random keys into the tree...");
+////
+////        for (int i = 0; i < n; i++) {
+////            int key = random.nextInt(100); // Số ngẫu nhiên từ 0 đến 99 (có thể thay đổi)
+////            String data = "Data" + key;
+////            tree.insert(key, data);
+////        }
 
     }
 }

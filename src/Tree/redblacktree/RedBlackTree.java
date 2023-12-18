@@ -173,129 +173,127 @@ public class RedBlackTree<T extends Comparable<T>, V> implements RedBlackTreeInt
     // @param: z, the node to be inserted into the Tree rooted at root
     // Inserts z into the appropriate position in the RedBlackTree while
     // updating numLeft and numRight values.
-    private void insert(RedBlackNode<T, V> z) {
+    private void insert(RedBlackNode<T, V> newNode) {
 
-        // Create a reference to root & initialize a node to nil
-        RedBlackNode<T, V> y = nil;
-        RedBlackNode<T, V> x = root;
+        // Create a reference to the root & initialize a node to nil
+        RedBlackNode<T, V> parent = nil;
+        RedBlackNode<T, V> currentNode = root;
 
-        // While we haven't reached athe end of the tree keep
-        // tryint to figure out where z should go
-        while (!isNil(x)) {
-            y = x;
+        // While we haven't reached the end of the tree, keep
+        // trying to figure out where the new node should go
+        while (!isNil(currentNode)) {
+            parent = currentNode;
 
-            // if z.key is < than the current key, go left
-            if (z.key.compareTo(x.key) < 0) {
+            // if newNode.key is < than the current key, go left
+            if (newNode.key.compareTo(currentNode.key) < 0) {
 
-                // Update x.numLeft as z is < than x
-                x.numLeft++;
-                x = x.left;
+                // Update currentNode.numLeft as newNode is < than currentNode
+                currentNode.numLeft++;
+                currentNode = currentNode.left;
             }
 
-            // else z.key >= x.key so go right.
+            // else newNode.key >= currentNode.key so go right.
             else {
 
-                // Update x.numGreater as z is => x
-                x.numRight++;
-                x = x.right;
+                // Update currentNode.numGreater as newNode is => currentNode
+                currentNode.numRight++;
+                currentNode = currentNode.right;
             }
         }
-        // y will hold z's parent
-        z.parent = y;
+        // parent will hold newNode's parent
+        newNode.parent = parent;
 
-        // Depending on the value of y.key, put z as the left or
-        // right child of y
-        if (isNil(y))
-            root = z;
-        else if (z.key.compareTo(y.key) < 0)
-            y.left = z;
+        // Depending on the value of parent.key, put newNode as the left or
+        // right child of parent
+        if (isNil(parent))
+            root = newNode;
+        else if (newNode.key.compareTo(parent.key) < 0)
+            parent.left = newNode;
         else
-            y.right = z;
+            parent.right = newNode;
 
-        // Initialize z's children to nil and z's color to red
-        z.left = nil;
-        z.right = nil;
-        z.color = RedBlackNode.RED;
+        // Initialize newNode's children to nil and newNode's color to red
+        newNode.left = nil;
+        newNode.right = nil;
+        newNode.color = RedBlackNode.RED;
 
-        // Call insertFixup(z)
-        insertFixup(z);
+        // Call insertFixup(newNode)
+        insertFixup(newNode);
+    }
 
-    }// end insert(RedBlackNode z)
+    // @param: newNode, the node which was inserted and may have caused a violation
+// of the Red-Black Tree properties
+// Fixes up the violation of the Red-Black Tree properties that may have
+// been caused during insert(newNode)
+    private void insertFixup(RedBlackNode<T, V> newNode) {
 
-    // @param: z, the node which was inserted and may have caused a violation
-    // of the RedBlackTree properties
-    // Fixes up the violation of the RedBlackTree properties that may have
-    // been caused during insert(z)
+        RedBlackNode<T, V> uncle = nil;
+        // While there is a violation of the Red-Black Tree properties..
+        while (newNode.parent.color == RedBlackNode.RED) {
 
-    private void insertFixup(RedBlackNode<T, V> z) {
+            // If newNode's parent is the left child of its parent.
+            if (newNode.parent == newNode.parent.parent.left) {
 
-        RedBlackNode<T, V> y = nil;
-        // While there is a violation of the RedBlackTree properties..
-        while (z.parent.color == RedBlackNode.RED) {
+                // Initialize uncle to newNode's cousin
+                uncle = newNode.parent.parent.right;
 
-            // If z's parent is the the left child of it's parent.
-            if (z.parent == z.parent.parent.left) {
-
-                // Initialize y to z 's cousin
-                y = z.parent.parent.right;
-
-                // Case 1: if y is red...recolor
-                if (y.color == RedBlackNode.RED) {
-                    z.parent.color = RedBlackNode.BLACK;
-                    y.color = RedBlackNode.BLACK;
-                    z.parent.parent.color = RedBlackNode.RED;
-                    z = z.parent.parent;
+                // Case 1: if uncle is red...recolor
+                if (uncle.color == RedBlackNode.RED) {
+                    newNode.parent.color = RedBlackNode.BLACK;
+                    uncle.color = RedBlackNode.BLACK;
+                    newNode.parent.parent.color = RedBlackNode.RED;
+                    newNode = newNode.parent.parent;
                 }
-                // Case 2: if y is black & z is a right child
-                else if (z == z.parent.right) {
+                // Case 2: if uncle is black & newNode is a right child
+                else if (newNode == newNode.parent.right) {
 
-                    // leftRotaet around z's parent
-                    z = z.parent;
-                    leftRotate(z);
+                    // leftRotate around newNode's parent
+                    newNode = newNode.parent;
+                    leftRotate(newNode);
                 }
 
-                // Case 3: else y is black & z is a left child
+                // Case 3: else uncle is black & newNode is a left child
                 else {
-                    // recolor and rotate round z's grandpa
-                    z.parent.color = RedBlackNode.BLACK;
-                    z.parent.parent.color = RedBlackNode.RED;
-                    rightRotate(z.parent.parent);
+                    // recolor and rotate around newNode's grandparent
+                    newNode.parent.color = RedBlackNode.BLACK;
+                    newNode.parent.parent.color = RedBlackNode.RED;
+                    rightRotate(newNode.parent.parent);
                 }
             }
 
-            // If z's parent is the right child of it s parent.
+            // If newNode's parent is the right child of its parent.
             else {
 
-                // Initialize y to z's cousin
-                y = z.parent.parent.left;
+                // Initialize uncle to newNode's cousin
+                uncle = newNode.parent.parent.left;
 
-                // Case 1: if y is red...recolor
-                if (y.color == RedBlackNode.RED) {
-                    z.parent.color = RedBlackNode.BLACK;
-                    y.color = RedBlackNode.BLACK;
-                    z.parent.parent.color = RedBlackNode.RED;
-                    z = z.parent.parent;
+                // Case 1: if uncle is red...recolor
+                if (uncle.color == RedBlackNode.RED) {
+                    newNode.parent.color = RedBlackNode.BLACK;
+                    uncle.color = RedBlackNode.BLACK;
+                    newNode.parent.parent.color = RedBlackNode.RED;
+                    newNode = newNode.parent.parent;
                 }
 
-                // Case 2: if y is black and z is a left child
-                else if (z == z.parent.left) {
-                    // rightRotate around z's parent
-                    z = z.parent;
-                    rightRotate(z);
+                // Case 2: if uncle is black and newNode is a left child
+                else if (newNode == newNode.parent.left) {
+                    // rightRotate around newNode's parent
+                    newNode = newNode.parent;
+                    rightRotate(newNode);
                 }
-                // Case 3: if y  is black and z is a right child
+                // Case 3: if uncle is black and newNode is a right child
                 else {
-                    // recolor and rotate around z's grandpa
-                    z.parent.color = RedBlackNode.BLACK;
-                    z.parent.parent.color = RedBlackNode.RED;
-                    leftRotate(z.parent.parent);
+                    // recolor and rotate around newNode's grandparent
+                    newNode.parent.color = RedBlackNode.BLACK;
+                    newNode.parent.parent.color = RedBlackNode.RED;
+                    leftRotate(newNode.parent.parent);
                 }
             }
         }
         // Color root black at all times
         root.color = RedBlackNode.BLACK;
+    }
 
-    }// end insertFixup(RedBlackNode z)
 
     // @param: node, a RedBlackNode
     // @param: node, the node with the smallest key rooted at node
